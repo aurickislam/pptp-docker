@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  pptp:
+    image: mobtitude/vpn-pptp
+    container_name: pptp
+    hostname: pptp
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+#    environment:
+#      - PUID=1000
+    volumes:
+      - ./chap-secrets:/etc/ppp/chap-secrets
+    ports:
+      - 1723:1723

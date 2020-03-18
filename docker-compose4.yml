@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  pptpd:
+    image: rattydave/alpine-vpn-pptp
+    container_name: pptpd
+    hostname: pptpd
+#    cap_add:
+#      - NET_ADMIN
+    volumes:
+      - ./data/chap-secrets:/etc/ppp/chap-secrets
+    privileged: true
+    restart: on-failure
+#    ports:
+#      - 1723:1723
+    network_mode: host

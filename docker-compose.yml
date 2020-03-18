@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  pptpd:
+    image: vimagick/pptpd
+    container_name: pptpd
+    hostname: pptpd
+    volumes:
+      - ./data/pptpd.conf:/etc/pptpd.conf
+      - ./data/pptpd-options:/etc/ppp/pptpd-options
+      - ./data/chap-secrets:/etc/ppp/chap-secrets
+    privileged: true
+    restart: always
+#    ports:
+#      - 1723:1723
+    network_mode: host
