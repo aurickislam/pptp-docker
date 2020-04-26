@@ -1,16 +1,16 @@
 version: '3.7'
 
 services:
-  pptp:
-    image: mobtitude/vpn-pptp
-    container_name: pptp
-    hostname: pptp
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-#    environment:
-#      - PUID=1000
+  pptpd:
+    image: rattydave/alpine-vpn-pptp
+    container_name: pptpd
+    hostname: pptpd
+#    cap_add:
+#      - NET_ADMIN
     volumes:
-      - ./chap-secrets:/etc/ppp/chap-secrets
-    ports:
-      - 1723:1723
+      - ./data/chap-secrets:/etc/ppp/chap-secrets
+    privileged: true
+    restart: on-failure
+#    ports:
+#      - 1723:1723
+    network_mode: host

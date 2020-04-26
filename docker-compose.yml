@@ -2,7 +2,10 @@ version: '3.7'
 
 services:
   pptpd:
-    image: vimagick/pptpd
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pptp-docker
     container_name: pptpd
     hostname: pptpd
     volumes:
